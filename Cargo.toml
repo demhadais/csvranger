@@ -2,5 +2,9 @@
 name = "csvranger"
 version = "0.1.0"
 edition = "2024"
+authors = ["Ahmed Said"]
+description = "A Rust library for parsing the output CSV files of 10x Genomics *ranger pipelines with Python bindings."
+repository = "https://github.com/demhadais/csvranger"
+license = "MIT"
 
 [dependencies]
