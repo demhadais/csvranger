@@ -24,11 +24,17 @@ pub enum TenxCsvValue {
 impl TenxCsvValue {
     /// Parse a value from a CSV produced by a modern *ranger pipeline.
     ///
-    /// If the CSV was generated using any of the following, use [`TenxCsvValue::from_legacy_csv_value`] instead to correctly extract numerical values (you will need to activate the `legacy` feature):
-    /// - cellranger count < 10
-    /// - cellranger multi < 10
+    /// If the CSV-file was generated using any of the following, use [`TenxCsvValue::from_legacy_csv_value`] instead to correctly extract numerical values (you will need to activate the `legacy` feature):
+    /// - `cellranger count < 10`
+    /// - `cellranger multi < 10`
     ///
-    /// Otherwise, use this constructor.
+    /// If the CSV-file was generated using any of the following:
+    /// - `cellranger count >= 10`
+    /// - `cellranger multi >= 10`
+    /// - `cellranger-atac count >= 2`
+    /// - `spaceranger count >= 4`
+    ///
+    /// then this is the correct method. Note that [`TenxCsvValue::from_legacy_csv_value`] will still work for modern pipelines, but because it uses a regular expression for parsing, it will be less performant. Note also that other versions of `spaceranger` and `cellranger-atac` may also produce outputs compatible with this method, but they are currently untested.
     pub fn from_csv_value(val: &str) -> Self {
         i32::from_str(val)
             .ok()
@@ -56,10 +62,10 @@ mod tests {
     }
 
     #[test]
-    fn qc_library_metrics() {
-        let data = include_bytes!(
+    fn cellranger_multi_10_qc_library_metrics() {
+        let raw_data = include_bytes!(
             "../test-data/cellranger_multi.10.0/SOD1_G93A_mouse_spinal_cord_P112_specimen_1_Multiplex_qc_library_metrics.csv"
         );
-        let parsed_data = read_multi_row_csv(&data[..]);
+        let parsed_data = read_multi_row_csv(&raw_data[..]);
     }
 }
