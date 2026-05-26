@@ -33,3 +33,9 @@ impl TenxCsvValue {
             .unwrap_or_else(|| Self::String(val.to_owned()))
     }
 }
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn qc_library_metrics() {}
+}

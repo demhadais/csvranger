@@ -1,0 +1,27 @@
+Category,Library Type,Grouped By,Group Name,Metric Name,Metric Value
+Cells,Gene Expression,,,Cells,"11,357"
+Cells,Gene Expression,,,Confidently mapped reads in cells,93.55%
+Cells,Gene Expression,,,Mean reads per cell,"48,067"
+Cells,Gene Expression,,,Median UMI counts per cell,"13,378"
+Cells,Gene Expression,,,Median genes per cell,"3,502"
+Cells,Gene Expression,,,Total genes detected,"28,936"
+Library,Gene Expression,Fastq ID,10k_Mouse_Brain_CNIK_3p_gemx_gex,Number of reads,"619,515,724"
+Library,Gene Expression,Fastq ID,10k_Mouse_Brain_CNIK_3p_gemx_gex,Number of short reads skipped,0
+Library,Gene Expression,Fastq ID,10k_Mouse_Brain_CNIK_3p_gemx_gex,Q30 RNA read,91.9%
+Library,Gene Expression,Fastq ID,10k_Mouse_Brain_CNIK_3p_gemx_gex,Q30 UMI,94.8%
+Library,Gene Expression,Fastq ID,10k_Mouse_Brain_CNIK_3p_gemx_gex,Q30 barcodes,95.3%
+Library,Gene Expression,Physical library ID,GEX_1,Confidently mapped antisense,12.48%
+Library,Gene Expression,Physical library ID,GEX_1,Confidently mapped reads in cells,93.55%
+Library,Gene Expression,Physical library ID,GEX_1,Confidently mapped to exonic regions,27.48%
+Library,Gene Expression,Physical library ID,GEX_1,Confidently mapped to genome,91.80%
+Library,Gene Expression,Physical library ID,GEX_1,Confidently mapped to intergenic regions,6.01%
+Library,Gene Expression,Physical library ID,GEX_1,Confidently mapped to intronic regions,58.31%
+Library,Gene Expression,Physical library ID,GEX_1,Confidently mapped to transcriptome,72.87%
+Library,Gene Expression,Physical library ID,GEX_1,Estimated number of cells,"11,357"
+Library,Gene Expression,Physical library ID,GEX_1,Mapped to genome,94.36%
+Library,Gene Expression,Physical library ID,GEX_1,Mean reads per cell,"54,549"
+Library,Gene Expression,Physical library ID,GEX_1,Number of reads,"619,515,724"
+Library,Gene Expression,Physical library ID,GEX_1,Number of reads in the library,"619,515,724"
+Library,Gene Expression,Physical library ID,GEX_1,Sequencing saturation,47.13%
+Library,Gene Expression,Physical library ID,GEX_1,Valid UMIs,99.94%
+Library,Gene Expression,Physical library ID,GEX_1,Valid barcodes,95.74%
