@@ -138,4 +138,107 @@ mod tests {
 
         assert_eq!(parsed_data, expected_data);
     }
+
+    #[test]
+    fn cellranger_atac_count_2_summary() {
+        let raw_data = include_bytes!(
+            "../test-data/cellranger-atac_count.2.1/8k_mouse_cortex_ATACv2_nextgem_Chromium_X_summary.csv"
+        );
+
+        let parsed_data = read_single_row_csv(&raw_data[..]);
+        let expected_data = vec![
+            TenxCsvValue::String("8k_mouse_cortex_ATACv2_nextgem_Chromium_X".to_owned()),
+            TenxCsvValue::String("mm10".to_owned()),
+            TenxCsvValue::String("cellranger-atac-2.1.0".to_owned()),
+            TenxCsvValue::I32(8067),
+            TenxCsvValue::F64(0.8662),
+            TenxCsvValue::F64(455615555.4000),
+            TenxCsvValue::F64(0.7176),
+            TenxCsvValue::F64(0.1905),
+            TenxCsvValue::F64(0.0554),
+            TenxCsvValue::F64(0.9310),
+            TenxCsvValue::F64(0.2408),
+            TenxCsvValue::F64(0.4371),
+            TenxCsvValue::F64(0.4051),
+            TenxCsvValue::F64(0.3878),
+            TenxCsvValue::F64(0.4537),
+            TenxCsvValue::F64(56288.3711),
+            TenxCsvValue::F64(24552.0000),
+            TenxCsvValue::F64(0.1211),
+            TenxCsvValue::I32(177224),
+            TenxCsvValue::F64(0.3304),
+            TenxCsvValue::F64(0.8805),
+            TenxCsvValue::F64(0.9447),
+            TenxCsvValue::F64(0.9324),
+            TenxCsvValue::F64(0.8781),
+            TenxCsvValue::I32(454078290),
+            TenxCsvValue::F64(0.4666),
+            TenxCsvValue::F64(10.0386),
+            TenxCsvValue::F64(0.0095),
+            TenxCsvValue::F64(0.9555),
+        ];
+
+        assert_eq!(parsed_data, expected_data);
+    }
+
+    #[test]
+    fn spaceranger_count_4_metrics_summary() {
+        let raw_data = include_bytes!(
+            "../test-data/spaceranger_count.4.1/Visium_HD_11mm_Human_TA_metrics_summary.csv"
+        );
+
+        let parsed_data = read_single_row_csv(&raw_data[..]);
+        let expected_data = vec![
+            TenxCsvValue::String("Visium_HD_11mm_Human_TA".to_owned()),
+            TenxCsvValue::I32(905003210),
+            TenxCsvValue::F64(0.9070668710666784),
+            TenxCsvValue::F64(0.9983401252245282),
+            TenxCsvValue::F64(0.7098832774542063),
+            TenxCsvValue::F64(0.9737220789750496),
+            TenxCsvValue::F64(0.9629752017438916),
+            TenxCsvValue::F64(0.963444161020736),
+            TenxCsvValue::F64(0.9807111314002964),
+            TenxCsvValue::F64(0.9755059454430002),
+            TenxCsvValue::F64(0.9886539693144586),
+            TenxCsvValue::I32(18074),
+            TenxCsvValue::F64(0.9509161729934638),
+            TenxCsvValue::I32(18085),
+            TenxCsvValue::F64(0.003445940263570999),
+            TenxCsvValue::F64(0.001759245693725219),
+            TenxCsvValue::F64(0.008983033710603426),
+            TenxCsvValue::F64(42.0),
+            TenxCsvValue::I32(20352930),
+            TenxCsvValue::F64(44.46550005330928),
+            TenxCsvValue::F64(0.6669904245105683),
+            TenxCsvValue::F64(10.316071346974791),
+            TenxCsvValue::F64(10.530010814168334),
+            TenxCsvValue::I32(18074),
+            TenxCsvValue::I32(1290617),
+            TenxCsvValue::F64(701.2174874498012),
+            TenxCsvValue::F64(0.6767215772554074),
+            TenxCsvValue::F64(148.7440216578619),
+            TenxCsvValue::F64(166.5460860968123),
+            TenxCsvValue::I32(18074),
+            TenxCsvValue::F64(2602282.5952626923),
+            TenxCsvValue::F64(9853515.53268708),
+            TenxCsvValue::I32(328840),
+            TenxCsvValue::F64(2752.1080464663664),
+            TenxCsvValue::F64(0.6886975607406368),
+            TenxCsvValue::F64(511.74513441186934),
+            TenxCsvValue::F64(654.9548868750757),
+            TenxCsvValue::I32(18074),
+            TenxCsvValue::I32(506400),
+            TenxCsvValue::F64(0.8),
+            TenxCsvValue::F64(0.8654),
+            TenxCsvValue::F64(1394.6),
+            TenxCsvValue::F64(181.0),
+            TenxCsvValue::F64(202.0),
+            TenxCsvValue::F64(116.0),
+            TenxCsvValue::F64(28.0),
+            TenxCsvValue::I32(256),
+            TenxCsvValue::F64(0.27228000754439524),
+        ];
+
+        assert_eq!(parsed_data, expected_data);
+    }
 }

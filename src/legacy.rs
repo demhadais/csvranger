@@ -9,10 +9,19 @@ use regex::Regex;
 /// Note: from `cellranger >= 10.0`, 10x Genomics started formatting numerical values in CSV files as plain numbers, so this regex is only required for parsing older versions.
 #[cfg(feature = "legacy")]
 pub const LEGACY_CELLRANGERMULTI_CSV_VALUE_REGEX: LazyLock<Regex> = LazyLock::new(|| {
-    Regex::new(r#"([\d,%]+)( \(.*\))?"#).expect("regular expression should be valid")
+    Regex::new(r#"([\d,%\.]+)( \(.*\))?"#).expect("regular expression should be valid")
 });
 
 impl super::TenxCsvValue {
+    /// Parse a value from a CSV produced by a legacy *ranger pipeline.
+    ///
+    /// If the CSV-file was generated using any of the following:
+    /// - `cellranger count < 10`
+    /// - `cellranger multi < 10`
+    ///
+    /// use this method.
+    ///
+    /// Otherwise, use [`TenxCsvValue::from_csv_value`].
     pub fn from_legacy_csv_value(val: &str) -> Self {
         let Some(parsed_val) = parse_legacy_csv_value_as_f64(val) else {
             return Self::String(val.to_owned());
@@ -62,4 +71,36 @@ fn extract_numeric_part(s: &str) -> Option<&str> {
         .map(|c| c.get(1))
         .flatten()
         .map(|m| m.as_str())
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::legacy::extract_numeric_part;
+
+    #[test]
+    fn extract_from_str_with_parentheses() {
+        let Some(extracted_str) = extract_numeric_part("312,195 (100.0%)") else {
+            panic!("expected to extract number");
+        };
+
+        assert_eq!(extracted_str, "312,195")
+    }
+
+    #[test]
+    fn extract_from_str_without_parentheses() {
+        let Some(extracted_str) = extract_numeric_part("312,195") else {
+            panic!("expected to extract number");
+        };
+
+        assert_eq!(extracted_str, "312,195")
+    }
+
+    #[test]
+    fn extract_from_percentage() {
+        let Some(extracted_str) = extract_numeric_part("92.6%") else {
+            panic!("expected to extract number");
+        };
+
+        assert_eq!(extracted_str, "92.6%")
+    }
 }
