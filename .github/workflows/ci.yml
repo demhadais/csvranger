@@ -38,7 +38,7 @@ jobs:
 
       - name: Install nightly toolchain
         # This is updated weekly-ish
-        run: rustup component add --toolchain nightly-2026-03-09 rustfmt
+        run: rustup component add --toolchain nightly-2026-05-025 rustfmt
 
       - name: Format
         run: cargo +nightly-2026-03-09 fmt -- --check
