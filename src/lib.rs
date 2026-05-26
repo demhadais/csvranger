@@ -45,29 +45,43 @@ impl TenxCsvValue {
 }
 
 #[cfg(test)]
-mod tests {
+pub mod tests {
     use crate::TenxCsvValue;
 
-    fn read_multi_row_csv(raw_csv: &[u8]) -> Vec<TenxCsvValue> {
+    pub fn read_singlerow_csv(
+        raw_csv: &[u8],
+        parse_fn: impl Fn(&str) -> TenxCsvValue,
+    ) -> Vec<TenxCsvValue> {
+        let mut reader = csv::Reader::from_reader(raw_csv);
+        let line = reader.records().collect::<Result<Vec<_>, _>>().unwrap();
+
+        assert_eq!(line.len(), 1);
+
+        line[0].iter().map(parse_fn).collect()
+    }
+
+    pub fn read_multirow_csv(
+        raw_csv: &[u8],
+        parse_fn: impl Fn(&str) -> TenxCsvValue,
+    ) -> Vec<TenxCsvValue> {
         let mut parsed_data = Vec::with_capacity(50);
 
         let mut reader = csv::Reader::from_reader(raw_csv);
         for line in reader.records() {
             let line = line.unwrap();
             let raw_val = line.get(5).unwrap();
-            parsed_data.push(TenxCsvValue::from_csv_value(raw_val));
+            parsed_data.push(parse_fn(raw_val));
         }
 
         parsed_data
     }
 
-    fn read_single_row_csv(raw_csv: &[u8]) -> Vec<TenxCsvValue> {
-        let mut reader = csv::Reader::from_reader(raw_csv);
-        let line = reader.records().collect::<Result<Vec<_>, _>>().unwrap();
+    fn read_modern_singlerow_csv(raw_csv: &[u8]) -> Vec<TenxCsvValue> {
+        read_singlerow_csv(raw_csv, TenxCsvValue::from_csv_value)
+    }
 
-        assert_eq!(line.len(), 1);
-
-        line[0].iter().map(TenxCsvValue::from_csv_value).collect()
+    fn read_modern_multirow_csv(raw_csv: &[u8]) -> Vec<TenxCsvValue> {
+        read_multirow_csv(raw_csv, TenxCsvValue::from_csv_value)
     }
 
     #[test]
@@ -76,7 +90,7 @@ mod tests {
             "../test-data/cellranger_multi.10.0/SOD1_G93A_mouse_spinal_cord_P112_specimen_1_Multiplex_qc_library_metrics.csv"
         );
 
-        let parsed_data = read_multi_row_csv(&raw_data[..]);
+        let parsed_data = read_modern_multirow_csv(&raw_data[..]);
         let expected_data = vec![
             TenxCsvValue::I32(321950603),
             TenxCsvValue::F64(0.9754667347931396),
@@ -108,7 +122,7 @@ mod tests {
             "../test-data/cellranger_multi.10.0/SOD1_G93A_mouse_spinal_cord_P112_specimen_1_SOD1_G93A_mouse_spinal_cord_P112_specimen_1_metrics_summary.csv"
         );
 
-        let parsed_data = read_multi_row_csv(&raw_data[..]);
+        let parsed_data = read_modern_multirow_csv(&raw_data[..]);
         let expected_data = vec![
             TenxCsvValue::I32(16410),
             TenxCsvValue::F64(0.6847850295990157),
@@ -145,7 +159,7 @@ mod tests {
             "../test-data/cellranger-atac_count.2.1/8k_mouse_cortex_ATACv2_nextgem_Chromium_X_summary.csv"
         );
 
-        let parsed_data = read_single_row_csv(&raw_data[..]);
+        let parsed_data = read_modern_singlerow_csv(&raw_data[..]);
         let expected_data = vec![
             TenxCsvValue::String("8k_mouse_cortex_ATACv2_nextgem_Chromium_X".to_owned()),
             TenxCsvValue::String("mm10".to_owned()),
@@ -187,7 +201,7 @@ mod tests {
             "../test-data/spaceranger_count.4.1/Visium_HD_11mm_Human_TA_metrics_summary.csv"
         );
 
-        let parsed_data = read_single_row_csv(&raw_data[..]);
+        let parsed_data = read_modern_singlerow_csv(&raw_data[..]);
         let expected_data = vec![
             TenxCsvValue::String("Visium_HD_11mm_Human_TA".to_owned()),
             TenxCsvValue::I32(905003210),
