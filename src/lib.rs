@@ -24,7 +24,11 @@ pub enum TenxCsvValue {
 impl TenxCsvValue {
     /// Parse a value from a CSV produced by a modern *ranger pipeline.
     ///
-    /// Constructing a value through this method bypasses any regular expression checking and assumes the string provided is numeric (that is, all characters are digits or '.') or is meant to be a string. If you need to parse strings with extraneous characters produced by older *ranger pipelines (like "310,209 (95.3%)", "310,209", or "50.0%"), use [`TenxCsvValue::from_legacy_csv_value`] instead.
+    /// If the CSV was generated using any of the following, use [`TenxCsvValue::from_legacy_csv_value`] instead to correctly extract numerical values (you will need to activate the `legacy` feature):
+    /// - cellranger count < 10
+    /// - cellranger multi < 10
+    ///
+    /// Otherwise, use this constructor.
     pub fn from_csv_value(val: &str) -> Self {
         i32::from_str(val)
             .ok()
@@ -36,6 +40,26 @@ impl TenxCsvValue {
 
 #[cfg(test)]
 mod tests {
+    use crate::TenxCsvValue;
+
+    fn read_multi_row_csv(raw_csv: &[u8]) -> Vec<TenxCsvValue> {
+        let mut parsed_data = Vec::with_capacity(19);
+
+        let mut reader = csv::Reader::from_reader(raw_csv);
+        for line in reader.records() {
+            let line = line.unwrap();
+            let raw_val = line.get(5).unwrap();
+            parsed_data.push(TenxCsvValue::from_csv_value(raw_val));
+        }
+
+        parsed_data
+    }
+
     #[test]
-    fn qc_library_metrics() {}
+    fn qc_library_metrics() {
+        let data = include_bytes!(
+            "../test-data/cellranger_multi.10.0/SOD1_G93A_mouse_spinal_cord_P112_specimen_1_Multiplex_qc_library_metrics.csv"
+        );
+        let parsed_data = read_multi_row_csv(&data[..]);
+    }
 }
