@@ -1,7 +1,7 @@
 #[cfg(feature = "legacy")]
 pub use legacy::{
     LEGACY_CELLRANGERMULTI_CSV_VALUE_REGEX, parse_legacy_csv_value_as_f64,
-    parse_legacy_csv_value_as_i32,
+    parse_legacy_csv_value_as_i64,
 };
 use std::str::FromStr;
 
@@ -17,7 +17,7 @@ mod legacy;
 #[cfg_attr(feature = "serde", serde(untagged))]
 pub enum TenxCsvValue {
     F64(f64),
-    I32(i32),
+    I64(i64),
     String(String),
 }
 
@@ -36,9 +36,9 @@ impl TenxCsvValue {
     ///
     /// then this is the correct method. Note that [`TenxCsvValue::from_legacy_csv_value`] will still work for modern pipelines, but because it uses a regular expression for parsing, it will be less performant. Note also that other versions of `spaceranger` and `cellranger-atac` may also produce outputs compatible with this method, but they are currently untested.
     pub fn from_csv_value(val: &str) -> Self {
-        i32::from_str(val)
+        i64::from_str(val)
             .ok()
-            .map(Self::I32)
+            .map(Self::I64)
             .or_else(|| f64::from_str(val).ok().map(Self::F64))
             .unwrap_or_else(|| Self::String(val.to_owned()))
     }
@@ -92,11 +92,11 @@ pub mod tests {
 
         let parsed_data = read_modern_multirow_csv(&raw_data[..]);
         let expected_data = vec![
-            TenxCsvValue::I32(321950603),
+            TenxCsvValue::I64(321950603),
             TenxCsvValue::F64(0.9754667347931396),
             TenxCsvValue::F64(0.9838510115040644),
             TenxCsvValue::F64(0.9810434401949358),
-            TenxCsvValue::I32(16410),
+            TenxCsvValue::I64(16410),
             TenxCsvValue::F64(0.18127985925840928),
             TenxCsvValue::F64(0.6847850295990157),
             TenxCsvValue::F64(0.39215314033749454),
@@ -105,9 +105,9 @@ pub mod tests {
             TenxCsvValue::F64(0.4504263096534719),
             TenxCsvValue::F64(0.657908592269355),
             TenxCsvValue::F64(0.945846350845319),
-            TenxCsvValue::I32(19619),
-            TenxCsvValue::I32(321950603),
-            TenxCsvValue::I32(321950603),
+            TenxCsvValue::I64(19619),
+            TenxCsvValue::I64(321950603),
+            TenxCsvValue::I64(321950603),
             TenxCsvValue::F64(0.4625052256865317),
             TenxCsvValue::F64(0.9984212981890268),
             TenxCsvValue::F64(0.8701900924844672),
@@ -124,16 +124,16 @@ pub mod tests {
 
         let parsed_data = read_modern_multirow_csv(&raw_data[..]);
         let expected_data = vec![
-            TenxCsvValue::I32(16410),
+            TenxCsvValue::I64(16410),
             TenxCsvValue::F64(0.6847850295990157),
-            TenxCsvValue::I32(2244),
-            TenxCsvValue::I32(1305),
-            TenxCsvValue::I32(27219),
-            TenxCsvValue::I32(321950603),
+            TenxCsvValue::I64(2244),
+            TenxCsvValue::I64(1305),
+            TenxCsvValue::I64(27219),
+            TenxCsvValue::I64(321950603),
             TenxCsvValue::F64(0.9754667347931396),
             TenxCsvValue::F64(0.9838510115040644),
             TenxCsvValue::F64(0.9810434401949358),
-            TenxCsvValue::I32(16410),
+            TenxCsvValue::I64(16410),
             TenxCsvValue::F64(0.18127985925840928),
             TenxCsvValue::F64(0.6847850295990157),
             TenxCsvValue::F64(0.39215314033749454),
@@ -142,9 +142,9 @@ pub mod tests {
             TenxCsvValue::F64(0.4504263096534719),
             TenxCsvValue::F64(0.657908592269355),
             TenxCsvValue::F64(0.945846350845319),
-            TenxCsvValue::I32(19619),
-            TenxCsvValue::I32(321950603),
-            TenxCsvValue::I32(321950603),
+            TenxCsvValue::I64(19619),
+            TenxCsvValue::I64(321950603),
+            TenxCsvValue::I64(321950603),
             TenxCsvValue::F64(0.4625052256865317),
             TenxCsvValue::F64(0.9984212981890268),
             TenxCsvValue::F64(0.8701900924844672),
@@ -164,7 +164,7 @@ pub mod tests {
             TenxCsvValue::String("8k_mouse_cortex_ATACv2_nextgem_Chromium_X".to_owned()),
             TenxCsvValue::String("mm10".to_owned()),
             TenxCsvValue::String("cellranger-atac-2.1.0".to_owned()),
-            TenxCsvValue::I32(8067),
+            TenxCsvValue::I64(8067),
             TenxCsvValue::F64(0.8662),
             TenxCsvValue::F64(455615555.4000),
             TenxCsvValue::F64(0.7176),
@@ -179,13 +179,13 @@ pub mod tests {
             TenxCsvValue::F64(56288.3711),
             TenxCsvValue::F64(24552.0000),
             TenxCsvValue::F64(0.1211),
-            TenxCsvValue::I32(177224),
+            TenxCsvValue::I64(177224),
             TenxCsvValue::F64(0.3304),
             TenxCsvValue::F64(0.8805),
             TenxCsvValue::F64(0.9447),
             TenxCsvValue::F64(0.9324),
             TenxCsvValue::F64(0.8781),
-            TenxCsvValue::I32(454078290),
+            TenxCsvValue::I64(454078290),
             TenxCsvValue::F64(0.4666),
             TenxCsvValue::F64(10.0386),
             TenxCsvValue::F64(0.0095),
@@ -204,7 +204,7 @@ pub mod tests {
         let parsed_data = read_modern_singlerow_csv(&raw_data[..]);
         let expected_data = vec![
             TenxCsvValue::String("Visium_HD_11mm_Human_TA".to_owned()),
-            TenxCsvValue::I32(905003210),
+            TenxCsvValue::I64(905003210),
             TenxCsvValue::F64(0.9070668710666784),
             TenxCsvValue::F64(0.9983401252245282),
             TenxCsvValue::F64(0.7098832774542063),
@@ -214,34 +214,34 @@ pub mod tests {
             TenxCsvValue::F64(0.9807111314002964),
             TenxCsvValue::F64(0.9755059454430002),
             TenxCsvValue::F64(0.9886539693144586),
-            TenxCsvValue::I32(18074),
+            TenxCsvValue::I64(18074),
             TenxCsvValue::F64(0.9509161729934638),
-            TenxCsvValue::I32(18085),
+            TenxCsvValue::I64(18085),
             TenxCsvValue::F64(0.003445940263570999),
             TenxCsvValue::F64(0.001759245693725219),
             TenxCsvValue::F64(0.008983033710603426),
             TenxCsvValue::F64(42.0),
-            TenxCsvValue::I32(20352930),
+            TenxCsvValue::I64(20352930),
             TenxCsvValue::F64(44.46550005330928),
             TenxCsvValue::F64(0.6669904245105683),
             TenxCsvValue::F64(10.316071346974791),
             TenxCsvValue::F64(10.530010814168334),
-            TenxCsvValue::I32(18074),
-            TenxCsvValue::I32(1290617),
+            TenxCsvValue::I64(18074),
+            TenxCsvValue::I64(1290617),
             TenxCsvValue::F64(701.2174874498012),
             TenxCsvValue::F64(0.6767215772554074),
             TenxCsvValue::F64(148.7440216578619),
             TenxCsvValue::F64(166.5460860968123),
-            TenxCsvValue::I32(18074),
+            TenxCsvValue::I64(18074),
             TenxCsvValue::F64(2602282.5952626923),
             TenxCsvValue::F64(9853515.53268708),
-            TenxCsvValue::I32(328840),
+            TenxCsvValue::I64(328840),
             TenxCsvValue::F64(2752.1080464663664),
             TenxCsvValue::F64(0.6886975607406368),
             TenxCsvValue::F64(511.74513441186934),
             TenxCsvValue::F64(654.9548868750757),
-            TenxCsvValue::I32(18074),
-            TenxCsvValue::I32(506400),
+            TenxCsvValue::I64(18074),
+            TenxCsvValue::I64(506400),
             TenxCsvValue::F64(0.8),
             TenxCsvValue::F64(0.8654),
             TenxCsvValue::F64(1394.6),
@@ -249,7 +249,7 @@ pub mod tests {
             TenxCsvValue::F64(202.0),
             TenxCsvValue::F64(116.0),
             TenxCsvValue::F64(28.0),
-            TenxCsvValue::I32(256),
+            TenxCsvValue::I64(256),
             TenxCsvValue::F64(0.27228000754439524),
         ];
 
