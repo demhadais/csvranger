@@ -91,18 +91,17 @@ pub fn parse_legacy_csv_value_as_f64(val: &str) -> Option<f64> {
 /// assert_eq!(parse_legacy_csv_value_as_i64("312,195 (100.0%)").unwrap(), 312_195);
 /// ```
 pub fn parse_legacy_csv_value_as_i64(val: &str) -> Option<i64> {
-    parse_legacy_csv_value_as_f64(val).map(f64_to_i64).flatten()
+    parse_legacy_csv_value_as_f64(val).and_then(f64_to_i64)
 }
 
 fn f64_to_i64(f: f64) -> Option<i64> {
-    (f.trunc() == f).then(|| f as i64)
+    (f.trunc() == f).then_some(f as i64)
 }
 
 fn extract_numeric_part(s: &str) -> Option<&str> {
     LEGACY_CELLRANGERMULTI_CSV_VALUE_REGEX
         .captures(s)
-        .map(|c| c.get(1))
-        .flatten()
+        .and_then(|c| c.get(1))
         .map(|m| m.as_str())
 }
 
