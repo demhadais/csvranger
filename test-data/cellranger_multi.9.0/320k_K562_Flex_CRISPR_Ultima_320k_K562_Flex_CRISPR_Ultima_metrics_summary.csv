@@ -1,0 +1,170 @@
+Category,Library Type,Grouped By,Group Name,Metric Name,Metric Value
+Cells,CRISPR Guide Capture,,,Cells,"312,195"
+Cells,CRISPR Guide Capture,,,Cells with one or more protospacers detected,92.6%
+Cells,CRISPR Guide Capture,,,Cells with two or more protospacers detected,31.9%
+Cells,CRISPR Guide Capture,,,Fraction guide reads,100.0%
+Cells,CRISPR Guide Capture,,,Fraction protospacer not recognized,0.0%
+Cells,CRISPR Guide Capture,,,Fraction reads with putative protospacer sequence,100.0%
+Cells,CRISPR Guide Capture,,,Guide reads in cells,90.7%
+Cells,CRISPR Guide Capture,,,Mean guide reads usable per cell,"7,726"
+Cells,CRISPR Guide Capture,,,Median UMI counts per cell,621
+Cells,CRISPR Guide Capture,,,Number of reads from cells associated with this sample,"2,448,314,815"
+Cells,CRISPR Guide Capture,Physical library ID,CGC_1,Cells detected in other samples,0 (0.0%)
+Cells,CRISPR Guide Capture,Physical library ID,CGC_1,Cells detected in this sample,"312,195 (100.0%)"
+Cells,Gene Expression,,,Cells,"312,195"
+Cells,Gene Expression,,,Confidently mapped reads in cells,95.0%
+Cells,Gene Expression,,,Estimated UMIs from genomic DNA,0.0%
+Cells,Gene Expression,,,Estimated UMIs from genomic DNA per unspliced probe,2
+Cells,Gene Expression,,,Mean reads per cell,"8,218"
+Cells,Gene Expression,,,Median UMI counts per cell,"5,731"
+Cells,Gene Expression,,,Median genes per cell,"3,237"
+Cells,Gene Expression,,,Number of reads from cells called from this sample,"2,565,602,560"
+Cells,Gene Expression,,,Reads confidently mapped to filtered probe set,95.9%
+Cells,Gene Expression,,,Reads confidently mapped to probe set,97.8%
+Cells,Gene Expression,,,Reads half-mapped to probe set,0.0%
+Cells,Gene Expression,,,Reads mapped to probe set,100.0%
+Cells,Gene Expression,,,Reads split-mapped to probe set,2.2%
+Cells,Gene Expression,,,Total genes detected,"16,886"
+Cells,Gene Expression,Physical library ID,GEX_1,Cells detected in other samples,0 (0.0%)
+Cells,Gene Expression,Physical library ID,GEX_1,Cells detected in this sample,"312,195 (100.0%)"
+Library,CRISPR Guide Capture,Fastq ID,320k_K562_Flex_CRISPR_Ultima_crispr,Number of reads,"2,701,778,863"
+Library,CRISPR Guide Capture,Fastq ID,320k_K562_Flex_CRISPR_Ultima_crispr,Number of short reads skipped,0
+Library,CRISPR Guide Capture,Fastq ID,320k_K562_Flex_CRISPR_Ultima_crispr,Q30 GEM barcodes,93.0%
+Library,CRISPR Guide Capture,Fastq ID,320k_K562_Flex_CRISPR_Ultima_crispr,Q30 RNA read,94.9%
+Library,CRISPR Guide Capture,Fastq ID,320k_K562_Flex_CRISPR_Ultima_crispr,Q30 UMI,96.9%
+Library,CRISPR Guide Capture,Fastq ID,320k_K562_Flex_CRISPR_Ultima_crispr,Q30 barcodes,91.7%
+Library,CRISPR Guide Capture,Fastq ID,320k_K562_Flex_CRISPR_Ultima_crispr,Q30 probe barcodes,88.9%
+Library,CRISPR Guide Capture,Physical library ID,CGC_1,Cells,"312,195"
+Library,CRISPR Guide Capture,Physical library ID,CGC_1,Fraction guide reads,100.0%
+Library,CRISPR Guide Capture,Physical library ID,CGC_1,Fraction guide reads usable,89.3%
+Library,CRISPR Guide Capture,Physical library ID,CGC_1,Fraction protospacer not recognized,0.0%
+Library,CRISPR Guide Capture,Physical library ID,CGC_1,Fraction reads with putative protospacer sequence,100.0%
+Library,CRISPR Guide Capture,Physical library ID,CGC_1,Guide reads in cells,90.7%
+Library,CRISPR Guide Capture,Physical library ID,CGC_1,Mean reads per cell,"8,654"
+Library,CRISPR Guide Capture,Physical library ID,CGC_1,Number of reads,"2,701,778,863"
+Library,CRISPR Guide Capture,Physical library ID,CGC_1,Sequencing saturation,86.8%
+Library,CRISPR Guide Capture,Physical library ID,CGC_1,Valid GEM barcodes,100.0%
+Library,CRISPR Guide Capture,Physical library ID,CGC_1,Valid UMIs,100.0%
+Library,CRISPR Guide Capture,Physical library ID,CGC_1,Valid barcodes,100.0%
+Library,CRISPR Guide Capture,Physical library ID,CGC_1,Valid probe barcodes,100.0%
+Library,CRISPR Guide Capture,Probe barcode ID,BC001+CR001,Cells per probe barcode,"18,579 (6.0%)"
+Library,CRISPR Guide Capture,Probe barcode ID,BC001+CR001,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,CRISPR Guide Capture,Probe barcode ID,BC001+CR001,UMIs per probe barcode,"21,951,665 (6.3%)"
+Library,CRISPR Guide Capture,Probe barcode ID,BC002+CR002,Cells per probe barcode,"19,452 (6.2%)"
+Library,CRISPR Guide Capture,Probe barcode ID,BC002+CR002,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,CRISPR Guide Capture,Probe barcode ID,BC002+CR002,UMIs per probe barcode,"22,141,744 (6.3%)"
+Library,CRISPR Guide Capture,Probe barcode ID,BC003+CR003,Cells per probe barcode,"19,309 (6.2%)"
+Library,CRISPR Guide Capture,Probe barcode ID,BC003+CR003,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,CRISPR Guide Capture,Probe barcode ID,BC003+CR003,UMIs per probe barcode,"22,204,657 (6.3%)"
+Library,CRISPR Guide Capture,Probe barcode ID,BC004+CR004,Cells per probe barcode,"19,066 (6.1%)"
+Library,CRISPR Guide Capture,Probe barcode ID,BC004+CR004,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,CRISPR Guide Capture,Probe barcode ID,BC004+CR004,UMIs per probe barcode,"20,836,241 (5.9%)"
+Library,CRISPR Guide Capture,Probe barcode ID,BC005+CR005,Cells per probe barcode,"19,262 (6.2%)"
+Library,CRISPR Guide Capture,Probe barcode ID,BC005+CR005,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,CRISPR Guide Capture,Probe barcode ID,BC005+CR005,UMIs per probe barcode,"21,292,446 (6.1%)"
+Library,CRISPR Guide Capture,Probe barcode ID,BC006+CR006,Cells per probe barcode,"19,279 (6.2%)"
+Library,CRISPR Guide Capture,Probe barcode ID,BC006+CR006,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,CRISPR Guide Capture,Probe barcode ID,BC006+CR006,UMIs per probe barcode,"21,003,609 (6.0%)"
+Library,CRISPR Guide Capture,Probe barcode ID,BC007+CR007,Cells per probe barcode,"19,157 (6.1%)"
+Library,CRISPR Guide Capture,Probe barcode ID,BC007+CR007,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,CRISPR Guide Capture,Probe barcode ID,BC007+CR007,UMIs per probe barcode,"22,919,935 (6.5%)"
+Library,CRISPR Guide Capture,Probe barcode ID,BC008+CR008,Cells per probe barcode,"19,955 (6.4%)"
+Library,CRISPR Guide Capture,Probe barcode ID,BC008+CR008,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,CRISPR Guide Capture,Probe barcode ID,BC008+CR008,UMIs per probe barcode,"21,338,051 (6.1%)"
+Library,CRISPR Guide Capture,Probe barcode ID,BC009+CR009,Cells per probe barcode,"19,999 (6.4%)"
+Library,CRISPR Guide Capture,Probe barcode ID,BC009+CR009,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,CRISPR Guide Capture,Probe barcode ID,BC009+CR009,UMIs per probe barcode,"21,805,346 (6.2%)"
+Library,CRISPR Guide Capture,Probe barcode ID,BC010+CR010,Cells per probe barcode,"20,074 (6.4%)"
+Library,CRISPR Guide Capture,Probe barcode ID,BC010+CR010,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,CRISPR Guide Capture,Probe barcode ID,BC010+CR010,UMIs per probe barcode,"19,879,218 (5.7%)"
+Library,CRISPR Guide Capture,Probe barcode ID,BC011+CR011,Cells per probe barcode,"19,893 (6.4%)"
+Library,CRISPR Guide Capture,Probe barcode ID,BC011+CR011,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,CRISPR Guide Capture,Probe barcode ID,BC011+CR011,UMIs per probe barcode,"21,805,282 (6.2%)"
+Library,CRISPR Guide Capture,Probe barcode ID,BC012+CR012,Cells per probe barcode,"20,070 (6.4%)"
+Library,CRISPR Guide Capture,Probe barcode ID,BC012+CR012,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,CRISPR Guide Capture,Probe barcode ID,BC012+CR012,UMIs per probe barcode,"23,094,332 (6.6%)"
+Library,CRISPR Guide Capture,Probe barcode ID,BC013+CR013,Cells per probe barcode,"19,516 (6.3%)"
+Library,CRISPR Guide Capture,Probe barcode ID,BC013+CR013,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,CRISPR Guide Capture,Probe barcode ID,BC013+CR013,UMIs per probe barcode,"22,458,721 (6.4%)"
+Library,CRISPR Guide Capture,Probe barcode ID,BC014+CR014,Cells per probe barcode,"19,286 (6.2%)"
+Library,CRISPR Guide Capture,Probe barcode ID,BC014+CR014,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,CRISPR Guide Capture,Probe barcode ID,BC014+CR014,UMIs per probe barcode,"21,547,490 (6.1%)"
+Library,CRISPR Guide Capture,Probe barcode ID,BC015+CR015,Cells per probe barcode,"19,446 (6.2%)"
+Library,CRISPR Guide Capture,Probe barcode ID,BC015+CR015,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,CRISPR Guide Capture,Probe barcode ID,BC015+CR015,UMIs per probe barcode,"22,473,279 (6.4%)"
+Library,CRISPR Guide Capture,Probe barcode ID,BC016+CR016,Cells per probe barcode,"19,852 (6.4%)"
+Library,CRISPR Guide Capture,Probe barcode ID,BC016+CR016,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,CRISPR Guide Capture,Probe barcode ID,BC016+CR016,UMIs per probe barcode,"23,914,539 (6.8%)"
+Library,Gene Expression,,,Estimated UMIs from genomic DNA,0.0%
+Library,Gene Expression,,,Estimated UMIs from genomic DNA per unspliced probe,2
+Library,Gene Expression,Fastq ID,320k_K562_Flex_CRISPR_Ultima_gex,Number of reads,"2,743,861,986"
+Library,Gene Expression,Fastq ID,320k_K562_Flex_CRISPR_Ultima_gex,Number of short reads skipped,"59,719,110"
+Library,Gene Expression,Fastq ID,320k_K562_Flex_CRISPR_Ultima_gex,Q30 GEM barcodes,92.7%
+Library,Gene Expression,Fastq ID,320k_K562_Flex_CRISPR_Ultima_gex,Q30 RNA read,90.3%
+Library,Gene Expression,Fastq ID,320k_K562_Flex_CRISPR_Ultima_gex,Q30 UMI,96.8%
+Library,Gene Expression,Fastq ID,320k_K562_Flex_CRISPR_Ultima_gex,Q30 barcodes,92.0%
+Library,Gene Expression,Fastq ID,320k_K562_Flex_CRISPR_Ultima_gex,Q30 probe barcodes,90.6%
+Library,Gene Expression,Physical library ID,GEX_1,Cells,"312,195"
+Library,Gene Expression,Physical library ID,GEX_1,Confidently mapped reads in cells,95.0%
+Library,Gene Expression,Physical library ID,GEX_1,Fraction of initial cell barcodes passing high occupancy GEM filtering,97.1%
+Library,Gene Expression,Physical library ID,GEX_1,Mean reads per cell,"8,789"
+Library,Gene Expression,Physical library ID,GEX_1,Number of reads,"2,743,861,986"
+Library,Gene Expression,Physical library ID,GEX_1,Number of reads in the library,"2,743,861,986"
+Library,Gene Expression,Physical library ID,GEX_1,Reads confidently mapped to filtered probe set,95.9%
+Library,Gene Expression,Physical library ID,GEX_1,Reads confidently mapped to probe set,97.8%
+Library,Gene Expression,Physical library ID,GEX_1,Reads half-mapped to probe set,0.0%
+Library,Gene Expression,Physical library ID,GEX_1,Reads mapped to probe set,100.0%
+Library,Gene Expression,Physical library ID,GEX_1,Reads split-mapped to probe set,2.2%
+Library,Gene Expression,Physical library ID,GEX_1,Sequencing saturation,21.1%
+Library,Gene Expression,Physical library ID,GEX_1,Valid GEM barcodes,100.0%
+Library,Gene Expression,Physical library ID,GEX_1,Valid UMIs,100.0%
+Library,Gene Expression,Physical library ID,GEX_1,Valid barcodes,98.5%
+Library,Gene Expression,Physical library ID,GEX_1,Valid probe barcodes,98.5%
+Library,Gene Expression,Probe barcode ID,BC001+CR001,Cells per probe barcode,"18,579 (6.0%)"
+Library,Gene Expression,Probe barcode ID,BC001+CR001,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,Gene Expression,Probe barcode ID,BC001+CR001,UMIs per probe barcode,"118,779,761 (5.8%)"
+Library,Gene Expression,Probe barcode ID,BC002+CR002,Cells per probe barcode,"19,452 (6.2%)"
+Library,Gene Expression,Probe barcode ID,BC002+CR002,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,Gene Expression,Probe barcode ID,BC002+CR002,UMIs per probe barcode,"119,729,069 (5.8%)"
+Library,Gene Expression,Probe barcode ID,BC003+CR003,Cells per probe barcode,"19,309 (6.2%)"
+Library,Gene Expression,Probe barcode ID,BC003+CR003,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,Gene Expression,Probe barcode ID,BC003+CR003,UMIs per probe barcode,"125,634,537 (6.1%)"
+Library,Gene Expression,Probe barcode ID,BC004+CR004,Cells per probe barcode,"19,066 (6.1%)"
+Library,Gene Expression,Probe barcode ID,BC004+CR004,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,Gene Expression,Probe barcode ID,BC004+CR004,UMIs per probe barcode,"127,601,175 (6.2%)"
+Library,Gene Expression,Probe barcode ID,BC005+CR005,Cells per probe barcode,"19,262 (6.2%)"
+Library,Gene Expression,Probe barcode ID,BC005+CR005,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,Gene Expression,Probe barcode ID,BC005+CR005,UMIs per probe barcode,"130,149,341 (6.3%)"
+Library,Gene Expression,Probe barcode ID,BC006+CR006,Cells per probe barcode,"19,279 (6.2%)"
+Library,Gene Expression,Probe barcode ID,BC006+CR006,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,Gene Expression,Probe barcode ID,BC006+CR006,UMIs per probe barcode,"129,448,959 (6.3%)"
+Library,Gene Expression,Probe barcode ID,BC007+CR007,Cells per probe barcode,"19,157 (6.1%)"
+Library,Gene Expression,Probe barcode ID,BC007+CR007,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,Gene Expression,Probe barcode ID,BC007+CR007,UMIs per probe barcode,"127,618,747 (6.2%)"
+Library,Gene Expression,Probe barcode ID,BC008+CR008,Cells per probe barcode,"19,955 (6.4%)"
+Library,Gene Expression,Probe barcode ID,BC008+CR008,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,Gene Expression,Probe barcode ID,BC008+CR008,UMIs per probe barcode,"130,384,916 (6.4%)"
+Library,Gene Expression,Probe barcode ID,BC009+CR009,Cells per probe barcode,"19,999 (6.4%)"
+Library,Gene Expression,Probe barcode ID,BC009+CR009,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,Gene Expression,Probe barcode ID,BC009+CR009,UMIs per probe barcode,"127,979,209 (6.2%)"
+Library,Gene Expression,Probe barcode ID,BC010+CR010,Cells per probe barcode,"20,074 (6.4%)"
+Library,Gene Expression,Probe barcode ID,BC010+CR010,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,Gene Expression,Probe barcode ID,BC010+CR010,UMIs per probe barcode,"135,438,861 (6.6%)"
+Library,Gene Expression,Probe barcode ID,BC011+CR011,Cells per probe barcode,"19,893 (6.4%)"
+Library,Gene Expression,Probe barcode ID,BC011+CR011,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,Gene Expression,Probe barcode ID,BC011+CR011,UMIs per probe barcode,"132,257,387 (6.4%)"
+Library,Gene Expression,Probe barcode ID,BC012+CR012,Cells per probe barcode,"20,070 (6.4%)"
+Library,Gene Expression,Probe barcode ID,BC012+CR012,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,Gene Expression,Probe barcode ID,BC012+CR012,UMIs per probe barcode,"128,906,123 (6.3%)"
+Library,Gene Expression,Probe barcode ID,BC013+CR013,Cells per probe barcode,"19,516 (6.3%)"
+Library,Gene Expression,Probe barcode ID,BC013+CR013,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,Gene Expression,Probe barcode ID,BC013+CR013,UMIs per probe barcode,"130,424,065 (6.4%)"
+Library,Gene Expression,Probe barcode ID,BC014+CR014,Cells per probe barcode,"19,286 (6.2%)"
+Library,Gene Expression,Probe barcode ID,BC014+CR014,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,Gene Expression,Probe barcode ID,BC014+CR014,UMIs per probe barcode,"126,224,136 (6.1%)"
+Library,Gene Expression,Probe barcode ID,BC015+CR015,Cells per probe barcode,"19,446 (6.2%)"
+Library,Gene Expression,Probe barcode ID,BC015+CR015,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,Gene Expression,Probe barcode ID,BC015+CR015,UMIs per probe barcode,"129,136,426 (6.3%)"
+Library,Gene Expression,Probe barcode ID,BC016+CR016,Cells per probe barcode,"19,852 (6.4%)"
+Library,Gene Expression,Probe barcode ID,BC016+CR016,Sample ID,320k_K562_Flex_CRISPR_Ultima
+Library,Gene Expression,Probe barcode ID,BC016+CR016,UMIs per probe barcode,"132,819,446 (6.5%)"

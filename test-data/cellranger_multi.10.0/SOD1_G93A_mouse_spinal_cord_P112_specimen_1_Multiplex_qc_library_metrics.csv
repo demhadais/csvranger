@@ -1,0 +1,20 @@
+Category,Library Type,Grouped By,Group Name,Metric Name,Metric Value
+Library,Gene Expression,Fastq ID,SOD1_G93A_mouse_spinal_cord_P112_specimen_1,Number of reads,321950603
+Library,Gene Expression,Fastq ID,SOD1_G93A_mouse_spinal_cord_P112_specimen_1,Q30 RNA read,0.9754667347931396
+Library,Gene Expression,Fastq ID,SOD1_G93A_mouse_spinal_cord_P112_specimen_1,Q30 UMI,0.9838510115040644
+Library,Gene Expression,Fastq ID,SOD1_G93A_mouse_spinal_cord_P112_specimen_1,Q30 barcodes,0.9810434401949358
+Library,Gene Expression,Physical library ID,GEX_1,Cells,16410
+Library,Gene Expression,Physical library ID,GEX_1,Confidently mapped antisense,0.18127985925840928
+Library,Gene Expression,Physical library ID,GEX_1,Confidently mapped reads in cells,0.6847850295990157
+Library,Gene Expression,Physical library ID,GEX_1,Confidently mapped to exonic regions,0.39215314033749454
+Library,Gene Expression,Physical library ID,GEX_1,Confidently mapped to genome,0.9176445866138042
+Library,Gene Expression,Physical library ID,GEX_1,Confidently mapped to intergenic regions,0.07506513662283776
+Library,Gene Expression,Physical library ID,GEX_1,Confidently mapped to intronic regions,0.4504263096534719
+Library,Gene Expression,Physical library ID,GEX_1,Confidently mapped to transcriptome,0.657908592269355
+Library,Gene Expression,Physical library ID,GEX_1,Mapped to genome,0.945846350845319
+Library,Gene Expression,Physical library ID,GEX_1,Mean reads per cell,19619
+Library,Gene Expression,Physical library ID,GEX_1,Number of reads,321950603
+Library,Gene Expression,Physical library ID,GEX_1,Number of reads in the library,321950603
+Library,Gene Expression,Physical library ID,GEX_1,Sequencing saturation,0.4625052256865317
+Library,Gene Expression,Physical library ID,GEX_1,Valid UMI Sequences,0.9984212981890268
+Library,Gene Expression,Physical library ID,GEX_1,Valid barcodes,0.8701900924844672
