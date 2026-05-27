@@ -37,6 +37,8 @@
 //!
 //!     let mut reader = csv::Reader::from_reader(&raw_csv[..]);
 //!     let mut parsed_data: Vec<HashMap<String, TenxCsvValue>> = Vec::new();
+//!
+//!     #[cfg(feature = "serde")]
 //!     for deserialized_record in reader.deserialize() {
 //!         parsed_data.push(deserialized_record.unwrap())
 //!     }
