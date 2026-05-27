@@ -1,6 +1,6 @@
 [package]
 name = "csvranger"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2024"
 authors = ["Ahmed Said"]
 description = "A Rust library for parsing the output CSV files of 10x Genomics *ranger pipelines with Python bindings."
@@ -16,6 +16,9 @@ serde = {version = "1.0.228", optional = true, features = ["derive"]}
 serde = ["dep:serde"]
 schemars = ["dep:schemars", "dep:serde"]
 legacy = ["dep:regex"]
+
+[package.metadata.docs.rs]
+all-features = true
 
 [dev-dependencies]
 csv = "1.4.0"

@@ -14,10 +14,11 @@ use regex::Regex;
 /// Note: from `cellranger >= 10.0`, 10x Genomics started formatting numerical
 /// values in CSV files as plain numbers, so this regex is only required for
 /// parsing older versions.
-#[cfg(feature = "legacy")]
 static LEGACY_CELLRANGERMULTI_CSV_VALUE_REGEX: LazyLock<Regex> = LazyLock::new(|| {
     Regex::new(r#"^([\d,%\.]+)( \([\d\.]+%\))?$"#).expect("regular expression should be valid")
 });
+
+static EXTRANEOUS_CHARS: [char; 2] = [',', '%'];
 
 impl super::TenxCsvValue {
     /// Parse a value from a CSV produced by a legacy *ranger pipeline.
@@ -75,23 +76,33 @@ pub fn parse_legacy_csv_value_as_f64(val: &str) -> Option<f64> {
         return Some(parsed_value);
     }
 
+    // Try again optimistically to just replace commas and parentheses and parse
+    if let Some(parsed_value) = replace_extraneous_chars_and_parse(val) {
+        let parsed_value = if val.contains('%') {
+            parsed_value / 100.0
+        } else {
+            parsed_value
+        };
+
+        return Some(parsed_value);
+    }
+
     let extracted_str = extract_numeric_part(val)?;
 
     // We know this string contains commas and/or percent symbols, so remove them
     // before trying to parse as a number again
-    let numeric_str = extracted_str.replace([',', '%'], "");
+    let numeric_str = extracted_str.replace(EXTRANEOUS_CHARS, "");
 
-    // If we couldn't parse the transformed string as a number, then it's hopeless
-    let parsed_value = numeric_str.parse().ok()?;
+    // We know that if we got here, we have a string like "300,000 (50.0%)", which
+    // is not a percentage. As such, we don't need to divide by 100, and we can just
+    // return the parsing result directly
+    numeric_str.parse().ok()
+}
 
-    // Now we have a float, but if it was a percentage, we need to divide by 100
-    let parsed_value = if extracted_str.contains('%') {
-        parsed_value / 100.0
-    } else {
-        parsed_value
-    };
+fn replace_extraneous_chars_and_parse(val: &str) -> Option<f64> {
+    let without_extraneous = val.replace(EXTRANEOUS_CHARS, "");
 
-    Some(parsed_value)
+    without_extraneous.parse().ok()
 }
 
 /// Parse a value in a CSV outputted by a legacy 10x Genomics pipeline as an
