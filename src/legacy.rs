@@ -2,11 +2,18 @@ use std::sync::LazyLock;
 
 use regex::Regex;
 
-/// A regular expreession that extracts the meaningful data from CSV values found in the `metrics_summary.csv` files outputted by 10x Genomics *ranger pipelines.
+/// A regular expreession that extracts the meaningful data from CSV values
+/// found in the `metrics_summary.csv` files outputted by 10x Genomics *ranger
+/// pipelines.
 ///
-/// From a string like "310,209 (95.3%)", this regex extracts "310,209", which is only useful for `cellranger multi <= 10.0`. Because the part in the parethenteses is optional, it also matches strings like "310,209" and "60.10%".
+/// From a string like "310,209 (95.3%)", this regex extracts "310,209", which
+/// is only useful for `cellranger multi <= 10.0`. Because the part in the
+/// parethenteses is optional, it also matches strings like "310,209" and
+/// "60.10%".
 ///
-/// Note: from `cellranger >= 10.0`, 10x Genomics started formatting numerical values in CSV files as plain numbers, so this regex is only required for parsing older versions.
+/// Note: from `cellranger >= 10.0`, 10x Genomics started formatting numerical
+/// values in CSV files as plain numbers, so this regex is only required for
+/// parsing older versions.
 #[cfg(feature = "legacy")]
 static LEGACY_CELLRANGERMULTI_CSV_VALUE_REGEX: LazyLock<Regex> = LazyLock::new(|| {
     Regex::new(r#"^([\d,%\.]+)( \(.*\))?$"#).expect("regular expression should be valid")
@@ -45,15 +52,22 @@ impl<'de> serde::Deserialize<'de> for super::TenxCsvValue {
     }
 }
 
-/// Parse a value in a CSV outputted by a legacy 10x Genomics pipeline as an `f64`.
+/// Parse a value in a CSV outputted by a legacy 10x Genomics pipeline as an
+/// `f64`.
 ///
-/// If you only need a field that you know contains a float, you can bypass [`TenxCsvValue`](crate::TenxCsvValue) and just use this function to get an `f64` directly. Note that integer fields will also parse as `f64`, so you can use this function for any fields which you know contain a numeric value.
+/// If you only need a field that you know contains a float, you can bypass
+/// [`TenxCsvValue`](crate::TenxCsvValue) and just use this function to get an
+/// `f64` directly. Note that integer fields will also parse as `f64`, so you
+/// can use this function for any fields which you know contain a numeric value.
 ///
 /// # Example
 /// ```
 /// use csvranger::parse_legacy_csv_value_as_f64;
 ///
-/// assert_eq!(parse_legacy_csv_value_as_f64("92.6%").unwrap(), 92.6 / 100.0);
+/// assert_eq!(
+///     parse_legacy_csv_value_as_f64("92.6%").unwrap(),
+///     92.6 / 100.0
+/// );
 /// ```
 pub fn parse_legacy_csv_value_as_f64(val: &str) -> Option<f64> {
     // Optimistically try to parse the value as a number
@@ -63,7 +77,8 @@ pub fn parse_legacy_csv_value_as_f64(val: &str) -> Option<f64> {
 
     let extracted_str = extract_numeric_part(val)?;
 
-    // We know this string contains commas and/or percent symbols, so remove them before trying to parse as a number again
+    // We know this string contains commas and/or percent symbols, so remove them
+    // before trying to parse as a number again
     let numeric_str = extracted_str.replace([',', '%'], "");
 
     // If we couldn't parse the transformed string as a number, then it's hopeless
@@ -79,16 +94,24 @@ pub fn parse_legacy_csv_value_as_f64(val: &str) -> Option<f64> {
     Some(parsed_value)
 }
 
-/// Parse a value in a CSV outputted by a legacy 10x Genomics pipeline as an `i64`.
+/// Parse a value in a CSV outputted by a legacy 10x Genomics pipeline as an
+/// `i64`.
 ///
-/// If you only need a field that you know contains an integer, you can bypass [`crate::TenxCsvValue`] and just use this function to get an `i64` directly.
+/// If you only need a field that you know contains an integer, you can bypass
+/// [`crate::TenxCsvValue`] and just use this function to get an `i64` directly.
 ///
 /// # Example
 /// ```
 /// use csvranger::parse_legacy_csv_value_as_i64;
 ///
-/// assert_eq!(parse_legacy_csv_value_as_i64("2,448,314,815").unwrap(), 2_448_314_815);
-/// assert_eq!(parse_legacy_csv_value_as_i64("312,195 (100.0%)").unwrap(), 312_195);
+/// assert_eq!(
+///     parse_legacy_csv_value_as_i64("2,448,314,815").unwrap(),
+///     2_448_314_815
+/// );
+/// assert_eq!(
+///     parse_legacy_csv_value_as_i64("312,195 (100.0%)").unwrap(),
+///     312_195
+/// );
 /// ```
 pub fn parse_legacy_csv_value_as_i64(val: &str) -> Option<i64> {
     parse_legacy_csv_value_as_f64(val).and_then(f64_to_i64)
@@ -107,8 +130,7 @@ fn extract_numeric_part(s: &str) -> Option<&str> {
 
 #[cfg(test)]
 mod tests {
-    use crate::TenxCsvValue;
-    use crate::legacy::extract_numeric_part;
+    use crate::{TenxCsvValue, legacy::extract_numeric_part};
 
     fn read_legacy_singlerow_csv(raw_csv: &[u8]) -> Vec<TenxCsvValue> {
         crate::tests::read_singlerow_csv(raw_csv, TenxCsvValue::from_legacy_csv_value)
@@ -153,7 +175,8 @@ mod tests {
     #[test]
     fn cellranger_multi_8_metrics_summary() {
         let raw_data = include_bytes!(
-            "../test-data/cellranger_multi.8.0/10k_Mouse_Brain_CNIK_3p_gemx_10k_Mouse_Brain_CNIK_3p_gemx_metrics_summary.csv"
+            "../test-data/cellranger_multi.8.0/\
+             10k_Mouse_Brain_CNIK_3p_gemx_10k_Mouse_Brain_CNIK_3p_gemx_metrics_summary.csv"
         );
 
         let parsed_data = read_legacy_multirow_csv(&raw_data[..]);
@@ -192,7 +215,8 @@ mod tests {
     #[test]
     fn cellranger_multi_9_metrics_summary() {
         let raw_data = include_bytes!(
-            "../test-data/cellranger_multi.9.0/320k_K562_Flex_CRISPR_Ultima_320k_K562_Flex_CRISPR_Ultima_metrics_summary.csv"
+            "../test-data/cellranger_multi.9.0/\
+             320k_K562_Flex_CRISPR_Ultima_320k_K562_Flex_CRISPR_Ultima_metrics_summary.csv"
         );
 
         let parsed_data = read_legacy_multirow_csv(&raw_data[..]);
