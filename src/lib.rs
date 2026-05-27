@@ -1,5 +1,5 @@
 //! # csvranger
-//! csranger Rust library for parsing the output CSV files of [10x Genomics *ranger pipelines](https://www.10xgenomics.com/software).
+//! csranger is a Rust library for parsing the output CSV files of [10x Genomics *ranger pipelines](https://www.10xgenomics.com/software).
 //!
 //! Many of 10x Genomics data-processing pipelines produce CSV files that summarize the data. These CSVs, while human-readable, cannot be parsed by a machine without extra effort. This small crate provides the necessary functionality to parse the values in these files. See documentation at [csvranger](https://docs.rs/csvranger).
 //! ## Example usage
@@ -44,7 +44,6 @@
 //!     }
 //! }
 //! ```
-// This is a dumb comment to trigger CI
 use std::str::FromStr;
 
 #[cfg(feature = "legacy")]
