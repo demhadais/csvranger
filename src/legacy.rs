@@ -8,7 +8,7 @@ use regex::Regex;
 ///
 /// Note: from `cellranger >= 10.0`, 10x Genomics started formatting numerical values in CSV files as plain numbers, so this regex is only required for parsing older versions.
 #[cfg(feature = "legacy")]
-pub const LEGACY_CELLRANGERMULTI_CSV_VALUE_REGEX: LazyLock<Regex> = LazyLock::new(|| {
+static LEGACY_CELLRANGERMULTI_CSV_VALUE_REGEX: LazyLock<Regex> = LazyLock::new(|| {
     Regex::new(r#"^([\d,%\.]+)( \(.*\))?$"#).expect("regular expression should be valid")
 });
 
@@ -33,6 +33,28 @@ impl super::TenxCsvValue {
     }
 }
 
+#[cfg(feature = "serde")]
+impl<'de> serde::Deserialize<'de> for super::TenxCsvValue {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        let s = String::deserialize(deserializer)?;
+
+        Ok(Self::from_legacy_csv_value(&s))
+    }
+}
+
+/// Parse a value in a CSV outputted by a legacy 10x Genomics pipeline as an `f64`.
+///
+/// If you only need a field that you know contains a float, you can bypass [`TenxCsvValue`] and just use this function to get an `f64` directly. Note that integer fields will also parse as `f64`, so you can use this function for any fields which you know contain a numeric value.
+///
+/// # Example
+/// ```
+/// use csvranger::parse_legacy_csv_value_as_f64;
+///
+/// assert_eq!(parse_legacy_csv_value_as_f64("92.6%").unwrap(), 92.6 / 100.0);
+/// ```
 pub fn parse_legacy_csv_value_as_f64(val: &str) -> Option<f64> {
     // Optimistically try to parse the value as a number
     if let Ok(parsed_value) = val.parse() {
@@ -57,6 +79,17 @@ pub fn parse_legacy_csv_value_as_f64(val: &str) -> Option<f64> {
     Some(parsed_value)
 }
 
+/// Parse a value in a CSV outputted by a legacy 10x Genomics pipeline as an `i64`.
+///
+/// If you only need a field that you know contains an integer, you can bypass [`TenxCsvValue`] and just use this function to get an `i64` directly.
+///
+/// # Example
+/// ```
+/// use csvranger::parse_legacy_csv_value_as_i64;
+///
+/// assert_eq!(parse_legacy_csv_value_as_i64("2,448,314,815").unwrap(), 2_448_314_815);
+/// assert_eq!(parse_legacy_csv_value_as_i64("312,195 (100.0%)").unwrap(), 312_195);
+/// ```
 pub fn parse_legacy_csv_value_as_i64(val: &str) -> Option<i64> {
     parse_legacy_csv_value_as_f64(val).map(f64_to_i64).flatten()
 }
