@@ -44,6 +44,7 @@
 //!     }
 //! }
 //! ```
+// This is a dumb comment to trigger CI
 use std::str::FromStr;
 
 #[cfg(feature = "legacy")]
