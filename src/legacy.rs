@@ -21,7 +21,7 @@ impl super::TenxCsvValue {
     ///
     /// use this method.
     ///
-    /// Otherwise, use [`TenxCsvValue::from_csv_value`].
+    /// Otherwise, use [`crate::TenxCsvValue::from_csv_value`].
     pub fn from_legacy_csv_value(val: &str) -> Self {
         let Some(parsed_val) = parse_legacy_csv_value_as_f64(val) else {
             return Self::String(val.to_owned());
@@ -47,7 +47,7 @@ impl<'de> serde::Deserialize<'de> for super::TenxCsvValue {
 
 /// Parse a value in a CSV outputted by a legacy 10x Genomics pipeline as an `f64`.
 ///
-/// If you only need a field that you know contains a float, you can bypass [`TenxCsvValue`] and just use this function to get an `f64` directly. Note that integer fields will also parse as `f64`, so you can use this function for any fields which you know contain a numeric value.
+/// If you only need a field that you know contains a float, you can bypass [`TenxCsvValue`](crate::TenxCsvValue) and just use this function to get an `f64` directly. Note that integer fields will also parse as `f64`, so you can use this function for any fields which you know contain a numeric value.
 ///
 /// # Example
 /// ```
@@ -81,7 +81,7 @@ pub fn parse_legacy_csv_value_as_f64(val: &str) -> Option<f64> {
 
 /// Parse a value in a CSV outputted by a legacy 10x Genomics pipeline as an `i64`.
 ///
-/// If you only need a field that you know contains an integer, you can bypass [`TenxCsvValue`] and just use this function to get an `i64` directly.
+/// If you only need a field that you know contains an integer, you can bypass [`crate::TenxCsvValue`] and just use this function to get an `i64` directly.
 ///
 /// # Example
 /// ```
