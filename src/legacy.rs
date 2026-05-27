@@ -16,7 +16,7 @@ use regex::Regex;
 /// parsing older versions.
 #[cfg(feature = "legacy")]
 static LEGACY_CELLRANGERMULTI_CSV_VALUE_REGEX: LazyLock<Regex> = LazyLock::new(|| {
-    Regex::new(r#"^([\d,%\.]+)( \(.*\))?$"#).expect("regular expression should be valid")
+    Regex::new(r#"^([\d,%\.]+)( \([\d\.]+%\))?$"#).expect("regular expression should be valid")
 });
 
 impl super::TenxCsvValue {
