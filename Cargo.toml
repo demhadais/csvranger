@@ -17,5 +17,8 @@ serde = ["dep:serde"]
 schemars = ["dep:schemars", "dep:serde"]
 legacy = ["dep:regex"]
 
+[package.metadata.docs.rs]
+all-features = true
+
 [dev-dependencies]
 csv = "1.4.0"
