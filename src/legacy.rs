@@ -47,9 +47,24 @@ impl<'de> serde::Deserialize<'de> for super::TenxCsvValue {
     where
         D: serde::Deserializer<'de>,
     {
-        let s = String::deserialize(deserializer)?;
+        #[derive(serde::Deserialize)]
+        #[serde(untagged)]
+        enum Inner {
+            // Crucially, the integer variant is first so serde tries that first
+            I64(i64),
+            F64(f64),
+            String(String),
+        }
 
-        Ok(Self::from_legacy_csv_value(&s))
+        let inner = Inner::deserialize(deserializer)?;
+
+        let ret = match inner {
+            Inner::I64(i) => Self::I64(i),
+            Inner::F64(f) => Self::F64(f),
+            Inner::String(s) => Self::from_legacy_csv_value(&s),
+        };
+
+        Ok(ret)
     }
 }
 
