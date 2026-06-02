@@ -94,7 +94,16 @@ pub fn parse_legacy_csv_value_as_f64(val: &str) -> Option<f64> {
     // Try again optimistically to just replace commas and parentheses and parse
     if let Some(parsed_value) = replace_extraneous_chars_and_parse(val) {
         let parsed_value = if val.contains('%') {
-            parsed_value / 100.0
+            // This seems like rigamorole but it's actually kinda smart. Thanks claude
+            let n_decimals = val
+                .split_once('.')
+                .map(|(_, frac)| frac.chars().take_while(char::is_ascii_digit).count())
+                .unwrap_or(0) as i32;
+
+            // Add 2 to the exponent because we divide by 100
+            let scale = 10f64.powi(n_decimals + 2);
+
+            ((parsed_value * scale) / 100.0).round() / scale
         } else {
             parsed_value
         };
@@ -144,7 +153,7 @@ pub fn parse_legacy_csv_value_as_i64(val: &str) -> Option<i64> {
 }
 
 fn f64_to_i64(f: f64) -> Option<i64> {
-    (f.trunc() == f).then_some(f as i64)
+    (f.round() == f).then_some(f as i64)
 }
 
 fn extract_numeric_part(s: &str) -> Option<&str> {
@@ -178,8 +187,8 @@ mod tests {
             TenxCsvValue::I64(54504),
             TenxCsvValue::I64(2610),
             TenxCsvValue::I64(309585432),
-            TenxCsvValue::F64(98.2 / 100.0),
-            TenxCsvValue::F64(33.3 / 100.0),
+            TenxCsvValue::F64(0.982),
+            TenxCsvValue::F64(0.333),
             TenxCsvValue::F64(95.7 / 100.0),
             TenxCsvValue::F64(93.5 / 100.0),
             TenxCsvValue::F64(94.2 / 100.0),
